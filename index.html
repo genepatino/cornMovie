@@ -4,10 +4,91 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/app.css">
     <script defer type="module" src="/src/main.js"></script>
     <title>Corn Movie</title>
 </head>
 <body>
-    <h1>Hola</h1>
+    <main class="main-container">
+        <section class="main-nav">
+            <nav class="nav-container">
+                <ul class="ul-list_navegation">
+                    <i class="fa-regular faa fa-magnifying-glass"></i>
+                    <div class="movie-arrow-icon">
+                        <div class="movie-select-gen">
+                            <li class="movie"><a href="/">Movies</a></li>
+                            <nav class="container-list-gen">
+                                <ul>
+                                    <li><a href="/">Acción</a></li>
+                                    <li><a href="/">Drama</a></li>
+                                    <li><a href="/">Comedia</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <i class="fa-solid fa-angle-down arrow-icon"></i>
+                    </div>
+                    <li><a href="/">Tv Shows</a></li>
+                    <li><a href="/">My List</a></li>
+                </ul>
+            </nav>
+        </section>
+        <section class="main-hero">
+            <div class="imag-hero-container">
+                <div class="image-hero">
+                    <img src="/images/boton-de-play.png" alt="" srcset="">
+                </div>
+                <!-- <figure>
+                    <img src="" alt="imagen centrar" srcset="">
+                </figure> -->
+            </div>
+        </section>
+        <main class="container-categories">
+            <section class="tendencia">
+                <div class="category-seeall">
+                    <p class="category">Bollywood</p>
+                    <p class="category see-all">See All</p>
+                </div>
+                <div class="movie-tendencias">
+                    <figure class="tendencia-container">
+                        <img src="" alt="" srcset="">
+                    </figure>
+                    <div class="datos-movie">
+                        <p>Nombre Movie</p>
+                        <p>autor</p>
+                        <span>estrellas puntuacion</span>
+                    </div>
+                </div>
+            </section>
+            <section class="populares">
+                <div class="category-seeall">
+                    <p class="category">Hollywood</p>
+                    <p class="category see-all">See All</p>
+                </div>
+                <div class="movie-tendencias">
+                    <figure class="tendencia-container">
+                        <img src="" alt="" srcset="">
+                    </figure>
+                    <div class="datos-movie">
+                        <p>Nombre Movie</p>
+                        <p>autor</p>
+                        <span>estrellas puntuacion</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <div>
+                <img class="icon-footer_" src="/images/hogar.png" alt="" srcset="">
+                <i class="fa-regular fa-tv fa"></i>
+                <i class="fa-solid fa-download fa"></i>
+                <img src="/images/usuario.png" class="icon-footer" alt="" srcset="">
+            </div>
+            
+        </footer>
+    </main>
+    <script src="https://kit.fontawesome.com/f86f418d56.js" crossorigin="anonymous"></script>
 </body>
 </html>
