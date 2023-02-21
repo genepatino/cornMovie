@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles/app.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script defer type="module" src="/src/main.js"></script>
     <title>Corn Movie</title>
 </head>
@@ -17,49 +18,46 @@
             <nav class="nav-container">
                 <ul class="ul-list_navegation">
                     <i class="fa-regular faa fa-magnifying-glass"></i>
-                    <div class="movie-arrow-icon">
+                   <!--  <div class="movie-arrow-icon">
                         <div class="movie-select-gen">
-                            <li class="movie"><a href="/">Movies</a></li>
+                            
                             <nav class="container-list-gen">
                                 <ul>
-                                    <li><a href="/">Acción</a></li>
-                                    <li><a href="/">Drama</a></li>
-                                    <li><a href="/">Comedia</a></li>
+                                    <li><a class="gender" href="#">Acción</a></li>
+                                    <li><a class="gender" href="#">Drama</a></li>
+                                    <li><a class="gender" href="#">Comedia</a></li>
                                 </ul>
                             </nav>
+                            <i class="fa-solid fa-angle-down arrow-icon"></i>
                         </div>
-                        <i class="fa-solid fa-angle-down arrow-icon"></i>
-                    </div>
+                    </div> -->
+                    <li class="movie"><a href="#">Movies</a></li>
                     <li><a href="/">Tv Shows</a></li>
                     <li><a href="/">My List</a></li>
                 </ul>
             </nav>
         </section>
-        <section class="main-hero">
+        <!-- <section class="main-hero">
             <div class="imag-hero-container">
-                <div class="image-hero">
-                    <img src="/images/boton-de-play.png" alt="" srcset="">
-                </div>
-                <!-- <figure>
-                    <img src="" alt="imagen centrar" srcset="">
-                </figure> -->
+                <figure class="image-hero">
+                    <img src="/images/poster.jpg" alt="imagen central" srcset="" class="poster">
+                    <img class="play" src="/images/boton-de-play.png" alt="" srcset="">
+                </figure>
             </div>
-        </section>
+        </section> -->
         <main class="container-categories">
+            <div class="imag-hero-container">
+                <figure class="image-hero">
+                    <img src="/images/poster.jpg" alt="imagen central" srcset="" class="poster">
+                    <img class="play" src="/images/boton-de-play.png" alt="" srcset="">
+                </figure>
+            </div>
             <section class="tendencia">
                 <div class="category-seeall">
                     <p class="category">Bollywood</p>
                     <p class="category see-all">See All</p>
                 </div>
-                <div class="movie-tendencias">
-                    <figure class="tendencia-container">
-                        <img src="" alt="" srcset="">
-                    </figure>
-                    <div class="datos-movie">
-                        <p>Nombre Movie</p>
-                        <p>autor</p>
-                        <span>estrellas puntuacion</span>
-                    </div>
+                <div class="movie-tendencias" id="movie-popular">
                 </div>
             </section>
             <section class="populares">
@@ -67,15 +65,23 @@
                     <p class="category">Hollywood</p>
                     <p class="category see-all">See All</p>
                 </div>
-                <div class="movie-tendencias">
-                    <figure class="tendencia-container">
-                        <img src="" alt="" srcset="">
-                    </figure>
-                    <div class="datos-movie">
-                        <p>Nombre Movie</p>
-                        <p>autor</p>
-                        <span>estrellas puntuacion</span>
-                    </div>
+                <div class="movie-tendencias" id="movie-tendencias">
+                    <!-- <article>
+                        <figure class="tendencia-container">
+                            <img src="/images/poster.jpg" class="category-movie" alt="" srcset="">
+                        </figure>
+                        <div class="datos-movie">
+                            <p>Nombre Movie</p>
+                            <p>autor</p>
+                            <div>
+                                <img src="/images/estrella.png" class="start" alt="">
+                                <img src="/images/estrella.png" class="start" alt="">
+                                <img src="/images/estrella.png" class="start" alt="">
+                                <img src="/images/estrella (1).png" class="start" alt="">
+                                <img src="/images/estrella (1).png" class="start" alt="">
+                            </div>
+                        </div>
+                    </article> -->
                 </div>
             </section>
         </main>
