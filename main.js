@@ -1,4 +1,4 @@
-import { API_KEY } from "./secrets.js";
+import { API_KEY } from "./src/secrets.js";
 const apiUrl = "https://api.themoviedb.org/3"
 
 const instance = axios.create({
