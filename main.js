@@ -123,6 +123,30 @@ async function getMoviePreviewPopular(){
     });
 }
 
+async function getGenderMovies (){
+    const res = await fetch(`${apiUrl}/genre/movie/list?api_key=${API_KEY}&language=es-Mx`)
+    const data = await res.json()
+    const genderes = data.genres
+    
+    genderes.forEach((gender)=>{
+        const containerGenderMovie = document.querySelector('.container-gender-movies')
+        const containerTitleGender = document.createElement('article')
+        containerTitleGender.classList.add('gender-movies-list')
+
+        const divContainer = document.createElement('div')
+        divContainer.classList.add('gender-movies')
+
+        const title = document.createElement('p')
+        title.classList.add('gender')
+        title.setAttribute('id', gender.id)
+        title.innerText = gender.name
+        
+        divContainer.appendChild(title)
+        containerTitleGender.appendChild(divContainer)
+        containerGenderMovie.appendChild(containerTitleGender)
+    })
+}
 
 getMoviePreviewTrend()
 getMoviePreviewPopular()
+getGenderMovies()

@@ -54,7 +54,7 @@ ul{
 }
 
 a:hover{
-    color:white;
+    color:var(--white-title);
 }
 
 
@@ -99,7 +99,7 @@ a:hover{
 }
 
 .faa:hover{
-    color: white;
+    color: var(--white-title);
 }
 
 .ul-list_navegation{
@@ -111,12 +111,48 @@ a:hover{
     font-size: 1.64rem;
 }
 
+.search-icon-input{
+    position: relative;
+    display:flex
+}
+
+.search-icon-input input{
+    height: 32px;
+    padding-left: 12px;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    border: 1px solid var(--opaque-blue);
+}
+
+.input-icon{
+    display: flex;
+    position: absolute;
+    color: var(--gray-icon);
+}
+
+.icon-search{
+    position: absolute;
+    z-index: 1;
+    font-size: 18px;
+    top: 8px;
+    right: 8px;
+}
+
+.icon-input{
+    display: none;
+}
+
+#burger{
+    display: none;
+}
 
 .imag-hero-container{
     display: grid;
     grid-area: imagHero;
     width: 80%;
     place-self: center;
+    margin-bottom: 20px;
 }
 
 .image-hero{
@@ -124,6 +160,11 @@ a:hover{
     min-width: 260px;
     display: grid;
     place-self: center;
+}
+
+.image-hero img{
+    width: 100%;
+    border-radius: 8px;
 }
 
 .poster{
@@ -145,8 +186,39 @@ a:hover{
     grid-template-areas:
     "imagHero"
     "tendencias"
-    "populares";
+    "populares"
+    "genderCategories";
     overflow-y: auto;
+}
+
+.gender-categories-movies{
+    display: grid;
+    grid-area: genderCategories;
+    width: 80%;
+    place-self: center;
+    gap: 10px;
+}
+
+.gender-categories-movies > h3{
+    color: var(--white-title);
+}
+
+.gender-categories-movies p{
+    color: var(--light-blue);
+    font-size: 1.4rem;
+}
+
+.gender:hover{
+    cursor: pointer;
+    color: var(--white-title);
+    font-weight: 600;
+}
+
+.container-gender-movies{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    padding-bottom: 24px;
+    gap: 4px;
 }
 
 .container-categories::-webkit-scrollbar {
@@ -241,7 +313,7 @@ article{
 }
 
 .category{
-    color: white;
+    color: var(--white-title);
     font-weight: 600;
 }
 
@@ -259,7 +331,7 @@ article{
     grid-area: populares;
     width: 80%;
     place-self: center;
-    padding-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 footer{
