@@ -47,6 +47,7 @@ a{
     text-decoration: none;
     color: var(--gray-title2);
     font-weight: 600;
+    font-size: 1.5rem;
 }
 
 ul{
@@ -75,7 +76,7 @@ a:hover{
     background-color: var(--background-blue);
     border-top-right-radius: 16px;
     border-top-left-radius: 16px;
-    border-radius: 20px;
+    border-radius: 16px;
     gap: 26px;
 }
 
@@ -106,7 +107,7 @@ a:hover{
     width: 100%;
     list-style: none;
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-evenly;
     font-size: 1.64rem;
 }
@@ -216,9 +217,9 @@ a:hover{
 
 .container-gender-movies{
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2,max-content);
     padding-bottom: 24px;
-    gap: 4px;
+    gap: 0 20px;
 }
 
 .container-categories::-webkit-scrollbar {

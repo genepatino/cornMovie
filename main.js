@@ -1,14 +1,18 @@
 import { API_KEY } from "./src/secrets.js";
-const apiUrl = "https://api.themoviedb.org/3"
 
-const instance = axios.create({
-    baseURL: apiUrl,
-    headers: {'apy_key': API_KEY}
+const instance_api = axios.create({
+    baseURL: 'https://api.themoviedb.org/3/',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+    },
+    params: {
+      'api_key': API_KEY,
+      "language": "es-ES"
+    },
   });
 
 async function getMoviePreviewTrend(){
-    const res = await fetch(`${apiUrl}/trending/movie/day?api_key=${API_KEY}`)
-    const data = await res.json()
+    const {data} = await instance_api('/trending/movie/day')
     const movies = data.results
     console.log(movies)
     
@@ -66,8 +70,7 @@ async function getMoviePreviewTrend(){
 }
 
 async function getMoviePreviewPopular(){
-    const res = await fetch(`${apiUrl}/trending/movie/day?api_key=${API_KEY}&page=2`)
-    const data = await res.json()
+    const {data} = await instance_api('/trending/movie/day')
     const movies = data.results
     console.log(movies);
     movies.forEach(movie => {
@@ -124,8 +127,7 @@ async function getMoviePreviewPopular(){
 }
 
 async function getGenderMovies (){
-    const res = await fetch(`${apiUrl}/genre/movie/list?api_key=${API_KEY}&language=es-Mx`)
-    const data = await res.json()
+    const {data} = await instance_api('/genre/movie/list')
     const genderes = data.genres
     
     genderes.forEach((gender)=>{
