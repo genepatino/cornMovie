@@ -10,6 +10,7 @@ const instance_api = axios.create({
 });
 
 const createE = (elemento) => document.createElement(elemento);
+
 const iconSearchMovie = document.getElementById('search-movie')
 iconSearchMovie.addEventListener('click', showSearchAndMenu)
 
