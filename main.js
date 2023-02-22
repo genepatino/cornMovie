@@ -1,5 +1,3 @@
-import { API_KEY } from "./src/secrets.js";
-
 alert('está tomando el main.js')
 
 const instance_api = axios.create({
