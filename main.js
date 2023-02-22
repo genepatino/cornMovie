@@ -3,13 +3,46 @@ import { API_KEY } from "./src/secrets.js";
 const instance_api = axios.create({
     baseURL: 'https://api.themoviedb.org/3/',
     headers: {
-      'Content-Type': 'application/json;charset=utf-8',
+        'Content-Type': 'application/json;charset=utf-8',
     },
     params: {
-      'api_key': API_KEY,
-      "language": "es-ES"
+        'api_key': API_KEY,
+        "language": "es-ES"
     },
-  });
+});
+
+const createE = (elemento) => document.createElement(elemento);
+const iconSearchMovie = document.getElementById('search-movie')
+iconSearchMovie.addEventListener('click', showSearchAndMenu)
+
+const searchInput = document.getElementById('search-input')
+const containerNav = document.getElementsByClassName('nav')
+const menuBurger = document.getElementById('burger')
+menuBurger.addEventListener('click', onlyMenuBurgerAndNav)
+
+const searchIconInput = document.querySelector('.search-icon-input')
+
+function showSearchAndMenu (){
+    iconSearchMovie.classList.add('inactive')
+    searchInput.classList.remove('icon-input')
+    for (const iterator of containerNav) {
+        iterator.classList.add('inactive')
+    }
+    menuBurger.style.display='block'
+    searchIconInput.style.width='60%'
+    searchInput.style.width='100%'
+}
+
+function onlyMenuBurgerAndNav(){
+    iconSearchMovie.classList.remove('inactive')
+    searchInput.classList.add('icon-input')
+    for (const iterator of containerNav) {
+        iterator.classList.remove('inactive')
+    }
+    menuBurger.style.display='none'
+    searchIconInput.style.width='0'
+    searchInput.style.width='0'
+}
 
 async function getMoviePreviewTrend(){
     const {data} = await instance_api('/trending/movie/day')
@@ -18,29 +51,29 @@ async function getMoviePreviewTrend(){
     
     movies.forEach(movie => {
         const containerMovie = document.getElementById('movie-tendencias')
-        const article = document.createElement('article')
-        const figureContainer = document.createElement('figure')
+        const article = createE('article')
+        const figureContainer = createE('figure')
         figureContainer.classList.add('tendencia-container')
         
-        const imagMovie = document.createElement('img')
+        const imagMovie = createE('img')
         imagMovie.classList.add('category-movie')
         imagMovie.setAttribute('alt', movie.title)
         imagMovie.setAttribute('src', `https://image.tmdb.org/t/p/w300${movie.poster_path}`)
         
         figureContainer.append(imagMovie)
 
-        const containerInfo = document.createElement('div')
+        const containerInfo = createE('div')
         
         containerInfo.classList.add('datos-movie')
 
-        const containerPuntuacion = document.createElement('div')
+        const containerPuntuacion = createE('div')
         
         const puntuacion = movie.vote_average
-        const imagPositive = document.createElement('img')
+        const imagPositive = createE('img')
         imagPositive.setAttribute('src', "/images/estrella.png")
         imagPositive.classList.add('start')
 
-        const imagNegative = document.createElement('img')
+        const imagNegative = createE('img')
         imagNegative.setAttribute('src', "/images/estrellaFalse.png")
         imagNegative.classList.add('start')
 
@@ -75,11 +108,11 @@ async function getMoviePreviewPopular(){
     console.log(movies);
     movies.forEach(movie => {
         const containerMovie = document.getElementById('movie-popular')
-        const article = document.createElement('article')
-        const figureContainer = document.createElement('figure')
+        const article = createE('article')
+        const figureContainer = createE('figure')
         figureContainer.classList.add('tendencia-container')
         
-        const imagMovie = document.createElement('img')
+        const imagMovie = createE('img')
         imagMovie.classList.add('category-movie')
         imagMovie.setAttribute('alt', movie.title)
         imagMovie.setAttribute('src', `https://image.tmdb.org/t/p/w300${movie.poster_path}`)
@@ -87,18 +120,18 @@ async function getMoviePreviewPopular(){
         figureContainer.append(imagMovie)
         article.appendChild(figureContainer)
         containerMovie.appendChild(article)
-        const containerInfo = document.createElement('div')
+        const containerInfo = createE('div')
         
         containerInfo.classList.add('datos-movie')
 
-        const containerPuntuacion = document.createElement('div')
+        const containerPuntuacion = createE('div')
         
         const puntuacion = movie.vote_average
-        const imagPositive = document.createElement('img')
+        const imagPositive = createE('img')
         imagPositive.setAttribute('src', "/images/estrella.png")
         imagPositive.classList.add('start')
 
-        const imagNegative = document.createElement('img')
+        const imagNegative = createE('img')
         imagNegative.setAttribute('src', "/images/estrellaFalse.png")
         imagNegative.classList.add('start')
 
@@ -132,13 +165,13 @@ async function getGenderMovies (){
     
     genderes.forEach((gender)=>{
         const containerGenderMovie = document.querySelector('.container-gender-movies')
-        const containerTitleGender = document.createElement('article')
+        const containerTitleGender = createE('article')
         containerTitleGender.classList.add('gender-movies-list')
 
-        const divContainer = document.createElement('div')
+        const divContainer = createE('div')
         divContainer.classList.add('gender-movies')
 
-        const title = document.createElement('p')
+        const title = createE('p')
         title.classList.add('gender')
         title.setAttribute('id', gender.id)
         title.innerText = gender.name
