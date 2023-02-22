@@ -137,7 +137,7 @@ input{
     color: var(--white-title);
     border-radius: 4px;
     background: var(--background-blue);
-    border: 1px solid var(--opaque-blue);
+    border: 2px solid var(--opaque-blue);
 }
 
 .input-icon{

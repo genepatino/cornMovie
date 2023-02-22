@@ -1,5 +1,3 @@
-alert('está tomando el main.js')
-
 const instance_api = axios.create({
     baseURL: 'https://api.themoviedb.org/3/',
     headers: {
@@ -47,7 +45,6 @@ function onlyMenuBurgerAndNav(){
 async function getMoviePreviewTrend(){
     const {data} = await instance_api('/trending/movie/day')
     const movies = data.results
-    console.log(movies)
     
     movies.forEach(movie => {
         const containerMovie = document.getElementById('movie-tendencias')
@@ -105,7 +102,7 @@ async function getMoviePreviewTrend(){
 async function getMoviePreviewPopular(){
     const {data} = await instance_api('/trending/movie/day')
     const movies = data.results
-    console.log(movies);
+    
     movies.forEach(movie => {
         const containerMovie = document.getElementById('movie-popular')
         const article = createE('article')
@@ -181,7 +178,3 @@ async function getGenderMovies (){
         containerGenderMovie.appendChild(containerTitleGender)
     })
 }
-
-getMoviePreviewTrend()
-getMoviePreviewPopular()
-getGenderMovies()
