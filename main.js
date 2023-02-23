@@ -68,11 +68,11 @@ async function getMoviePreviewTrend(){
         
         const puntuacion = movie.vote_average
         const imagPositive = createE('img')
-        imagPositive.setAttribute('src', "/images/estrella.png")
+        imagPositive.setAttribute('src', "images/estrella.png")
         imagPositive.classList.add('start')
 
         const imagNegative = createE('img')
-        imagNegative.setAttribute('src', "/images/estrellaFalse.png")
+        imagNegative.setAttribute('src', "images/estrellaFalse.png")
         imagNegative.classList.add('start')
 
         if(puntuacion < 5){
@@ -126,11 +126,11 @@ async function getMoviePreviewPopular(){
         
         const puntuacion = movie.vote_average
         const imagPositive = createE('img')
-        imagPositive.setAttribute('src', "/images/estrella.png")
+        imagPositive.setAttribute('src', "images/estrella.png")
         imagPositive.classList.add('start')
 
         const imagNegative = createE('img')
-        imagNegative.setAttribute('src', "/images/estrellaFalse.png")
+        imagNegative.setAttribute('src', "images/estrellaFalse.png")
         imagNegative.classList.add('start')
 
         if(puntuacion < 5){

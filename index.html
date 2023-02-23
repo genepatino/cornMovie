@@ -9,9 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="app.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script defer src="/src/secrets.js"></script>
+    <script defer src="src/secrets.js"></script>
     <script defer src="main.js"></script>
-    <script defer src="/src/navigation.js"></script>
+    <script defer src="src/carrusel.js"></script>
+    <script defer src="src/navigation.js"></script>
     <title>Corn Movie</title>
 </head>
 <body>
@@ -20,7 +21,7 @@
             <nav class="nav-container">
                 <ul class="ul-list_navegation">
                     <div class="search-icon-input">
-                        <img src="/images/search.png" class="faa" alt="" id="search-movie">
+                        <img src="images/search.png" class="faa" alt="" id="search-movie">
                         <div class="icon-input" id="search-input">
                             <i class="fa-regular icon-search fa-magnifying-glass"></i>
                             <input type="text" placeholder="Movie" id="search"> 
@@ -33,11 +34,11 @@
                 </ul>
             </nav>
         </section>
-        <main class="container-categories">
+        <main class="container-categories container-carrusel">
             <div class="imag-hero-container">
                 <figure class="image-hero">
                     <img src='https://i.postimg.cc/yJq6ZkBm/840-560.jpg' alt="imagen logo de disney y marvel studios"/>
-                    <img class="play" src="/images/boton-de-play.png" alt="" srcset="">
+                    <img class="play" src="images/boton-de-play.png" alt="" srcset="">
                 </figure>
             </div>
             <section class="tendencia">
@@ -61,15 +62,54 @@
                 <section class="container-gender-movies">
                 </section>
             </section>
+            <!-- CARRUSEL -->
+            <div class="slider-container">
+                <div class="slider-content">
+                    <div class="slider-single">
+                        <img class="slider-single-image" src="https://picsum.photos/id/973/200/300" alt="1" />
+                    </div>
+            
+                    <div class="slider-single">
+                        <img class="slider-single-image" src="https://picsum.photos/id/974/200/300" alt="2" />
+                        
+                        
+                    </div>
+            
+                    <div class="slider-single">
+                        <img class="slider-single-image" src="https://picsum.photos/id/975/200/300" alt="3" />
+                        
+                    </div>
+            
+            
+                    <div class="slider-single">
+                        <img class="slider-single-image" src="https://picsum.photos/id/976/200/300" alt="4" />
+                        
+                    </div>
+            
+            
+                    <div class="slider-single">
+                        <img class="slider-single-image" src="https://picsum.photos/id/977/200/300" alt="5" />
+                        
+                    </div>
+            
+                    <div class="slider-single">
+                        <img class="slider-single-image" src="https://picsum.photos/id/978/200/300" alt="6" />
+                    
+                    </div>
+                    <div class="z-index"></div>
+                    <img class="play" src="images/boton-de-play.png" alt="" srcset="">
+                </div>
+            </div>
+            <i class="fa-solid fa-chevron-left" id="i-left"></i>
+            <i class="fa-solid fa-chevron-right" id="i-right"></i>
         </main>
         <footer>
             <div>
                 <img class="icon-footer_" src="/images/hogar.png" alt="" srcset="">
                 <i class="fa-regular fa-tv fa"></i>
                 <i class="fa-solid fa-download fa"></i>
-                <img src="/images/usuario.png" class="icon-footer" alt="" srcset="">
-            </div>
-            
+                <img src="images/usuario.png" class="icon-footer" alt="" srcset="">
+            </div>    
         </footer>
     </main>
     <script src="https://kit.fontawesome.com/f86f418d56.js" crossorigin="anonymous"></script>
