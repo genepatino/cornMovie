@@ -24,11 +24,18 @@ const genderMovies = qselect('.gender-categories-movies')
 const imagHeroContainer = qselect('.imag-hero-container')
 const containerCategories = qselect('.container-categories')
 const carrusel = qselect('.slider-container')
+const recommendedTrailer = qselect('.recommended-trailer')
+const cardTrailerMovie = qselect('.cardTrailerMovieCategory')
+const searchInputNav = qselect('.input-nav')
+const movieForCategory = qselect('.movieForCategory')
 
 function homePage(){
     console.log('HOME')
     carrusel.classList.remove('slider-container')
     carrusel.classList.add('inactive')
+
+    searchInputNav.classList.add('search-icon-input')
+    searchInputNav.classList.remove('input-nav')
 
     containerTrends.classList.add('tendencia')
     containerTrends.classList.remove('inactive')
@@ -42,30 +49,22 @@ function homePage(){
     imagHeroContainer.classList.add('imag-hero-container')
     imagHeroContainer.classList.remove('inactive')
     
-    containerCategories.classList.add('container-categories')
     containerCategories.classList.remove('container-carrusel')
+    containerCategories.classList.add('container-categories')
 
+    movieForCategory.classList.remove('movieForCategory')
 
+    recommendedTrailer.style.display='none'
+    cardTrailerMovie.style.display='none'
 
     getMoviePreviewTrend()
     getMoviePreviewPopular()
     getGenderMovies()
 }
 
-function trendsPage(){
-    console.log('TRENDS')
-}
 
 function searchPage(){
     console.log('SEARCH')
-}
-
-function moviePage(){
-    console.log('MOVIE')
-}
-
-function genderPage(){
-    console.log('GENDER')
     containerTrends.classList.remove('tendencia')
     containerTrends.classList.add('inactive')
 
@@ -83,6 +82,46 @@ function genderPage(){
 
     carrusel.classList.remove('inactive')
 
+    searchInputNav.classList.add('search-icon-input')
+    searchInputNav.classList.remove('input-nav')
+}
+
+function moviePage(){
+    console.log('MOVIE')
+}
+
+function trendsPage(){
+    console.log('TRENDS')
+}
+
+function genderPage(){
+    console.log('GENDER')
+    
+    searchInputNav.classList.add('search-icon-input')
+    searchInputNav.classList.remove('input-nav')
+
+    carrusel.classList.remove('slider-container')
+    carrusel.classList.add('inactive')
+    
+    containerTrends.classList.remove('tendencia')
+    containerTrends.classList.add('inactive')
+
+    containerPopulars.classList.remove('populares')
+    containerPopulars.classList.add('inactive')
+
+    genderMovies.classList.add('gender-categories-movies')
+    genderMovies.classList.remove('inactive')
+    
+    containerCategories.classList.remove('container-carrusel')
+    containerCategories.classList.add('container-categories')
+
+    recommendedTrailer.style.display='none'
+    cardTrailerMovie.style.display='none'
+
+    movieForCategory.classList.remove('inactive')
+
+    getMovieForCategory()
+    getGenderMovies()
 
 }
 

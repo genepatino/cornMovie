@@ -28,7 +28,7 @@ function showSearchAndMenu (){
         iterator.classList.add('inactive')
     }
     menuBurger.style.display='block'
-    searchIconInput.style.width='60%'
+    searchIconInput.style.cssText = 'width: 50%; min-width: 240px;'
     searchInput.style.width='100%'
 }
 
@@ -39,7 +39,7 @@ function onlyMenuBurgerAndNav(){
         iterator.classList.remove('inactive')
     }
     menuBurger.style.display='none'
-    searchIconInput.style.width='0'
+    searchIconInput.style.cssText = 'min-width: none;'
     searchInput.style.width='0'
 }
 
@@ -50,6 +50,7 @@ async function getMoviePreviewTrend(){
     movies.forEach(movie => {
         const containerMovie = document.getElementById('movie-tendencias')
         const article = createE('article')
+        article.classList.add('article')
         const figureContainer = createE('figure')
         figureContainer.classList.add('tendencia-container')
         
@@ -107,6 +108,7 @@ async function getMoviePreviewPopular(){
     movies.forEach(movie => {
         const containerMovie = document.getElementById('movie-popular')
         const article = createE('article')
+        article.classList.add('article')
         const figureContainer = createE('figure')
         figureContainer.classList.add('tendencia-container')
         
@@ -178,4 +180,27 @@ async function getGenderMovies (){
         containerTitleGender.appendChild(divContainer)
         containerGenderMovie.appendChild(containerTitleGender)
     })
+}
+
+async function getMovieForCategory(){
+    const {data} = await instance_api('/trending/movie/day')
+    const movies = data.results
+    
+    movies.forEach(movie => {
+        const containerMovie = document.getElementById('movieForCategory')
+        const article = createE('article')
+        article.classList.add = ('art-movie')
+        const figureContainer = createE('figure')
+        figureContainer.classList.add('tendencia-container')
+        
+        const imagMovie = createE('img')
+        imagMovie.classList.add('category-for-movie')
+        imagMovie.setAttribute('alt', movie.title)
+        imagMovie.setAttribute('src', `https://image.tmdb.org/t/p/w300${movie.poster_path}`)
+        
+        figureContainer.append(imagMovie)
+        article.append(figureContainer)
+        containerMovie.append(article)
+        
+    });
 }
