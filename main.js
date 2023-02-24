@@ -20,6 +20,22 @@ const menuBurger = document.getElementById('burger')
 menuBurger.addEventListener('click', onlyMenuBurgerAndNav)
 
 const searchIconInput = document.querySelector('.search-icon-input')
+const iconSeacrch = document.querySelector('.icon-search') 
+iconSeacrch.addEventListener('click', goSearchMovie)
+
+const seeAllTrends = document.querySelector('#see-all-trends')
+seeAllTrends.addEventListener('click', goSeeAllMovie)
+
+const seeAllPopulars = document.querySelector('#see-all-populars')
+seeAllPopulars.addEventListener('click', goSeeAllMovie)
+
+function goSearchMovie(){
+    location.hash = '#search='
+}
+
+function goSeeAllMovie(){
+    location.hash = '#gender='
+}
 
 function showSearchAndMenu (){
     iconSearchMovie.classList.add('inactive')

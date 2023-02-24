@@ -74,8 +74,8 @@ function searchPage(){
     genderMovies.classList.remove('gender-categories-movies')
     genderMovies.classList.add('inactive')
 
-    imagHeroContainer.classList.remove('imag-hero-container')
     imagHeroContainer.classList.add('inactive')
+    imagHeroContainer.classList.remove('imag-hero-container')
     
     containerCategories.classList.remove('container-categories')
     containerCategories.classList.add('container-carrusel')
@@ -105,6 +105,9 @@ function genderPage(){
     
     containerTrends.classList.remove('tendencia')
     containerTrends.classList.add('inactive')
+
+    imagHeroContainer.classList.add('imag-hero-container')
+    imagHeroContainer.classList.remove('inactive')
 
     containerPopulars.classList.remove('populares')
     containerPopulars.classList.add('inactive')
