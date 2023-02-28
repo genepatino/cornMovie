@@ -11,7 +11,6 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script defer src="src/secrets.js"></script>
     <script defer src="main.js"></script>
-    <script defer src="src/carrusel.js"></script>
     <script defer src="src/navigation.js"></script>
     <title>Corn Movie</title>
 </head>
@@ -34,10 +33,10 @@
                 </ul>
             </nav>
         </section>
-        <main class="container-categories container-carrusel">
+        <main class="container-categories">
             <div class="imag-hero-container">
                 <figure class="image-hero">
-                    <img src='https://i.postimg.cc/yJq6ZkBm/840-560.jpg' alt="imagen logo de disney y marvel studios"/>
+                    <img id="imgHeroPage" src='https://i.postimg.cc/yJq6ZkBm/840-560.jpg' alt="imagen logo de disney y marvel studios"/>
                     <img class="play" src="images/boton-de-play.png" alt="" srcset="">
                 </figure>
             </div>
@@ -58,6 +57,7 @@
                 </div>
             </section>
             <section class="movieForCategory inactive">
+                <p id="title-by-category"></p>
                 <div class="movie-for-cat" id="movieForCategory">
                 </div>
             </section>
@@ -66,54 +66,9 @@
                 <section class="container-gender-movies">
                 </section>
             </section>
-            <!-- CARRUSEL -->
-            <section class="section-container-slider">
-                <div class="slider-container">
-                    <div class="slider-content">
-                        <div class="slider-single">
-                            <img class="slider-single-image" src="https://picsum.photos/id/973/200/300" alt="1" />
-                        </div>
-                        <div class="slider-single">
-                            <img class="slider-single-image" src="https://picsum.photos/id/974/200/300" alt="2" />
-                        </div>
-                        <div class="slider-single">
-                            <img class="slider-single-image" src="https://picsum.photos/id/975/200/300" alt="3" />
-                        </div>
-                        <div class="slider-single">
-                            <img class="slider-single-image" src="https://picsum.photos/id/976/200/300" alt="4" />
-                        </div>
-                        <div class="slider-single">
-                            <img class="slider-single-image" src="https://picsum.photos/id/977/200/300" alt="5" />
-                        </div>
-                        <div class="slider-single">
-                            <img class="slider-single-image" src="https://picsum.photos/id/978/200/300" alt="6" />
-                        </div>
-                        <div class="z-index"></div>
-                        <img class="play" src="images/boton-de-play.png" alt="" srcset="">
-                    </div>
-                    <i class="fa-solid fa-chevron-left" id="i-left"></i>
-                    <i class="fa-solid fa-chevron-right" id="i-right"></i>
-                </div>
-            </section>
-            <section class="recommended-trailer">
-                <p>Recommended</p>
-                <h2>Watch trailers</h2>
-            </section>
-            <section class="cardTrailerMovieCategory">
-                <p>Vengadores</p>
-                <div class="trailer-imag-title">
-                    <figure>
-                        <img class="imag-trailer" src="https://picsum.photos/id/973/200/300" alt="1" />
-                        <div>
-                            <p>Vengadores</p>
-                            <p class="autor">Autor</p>
-                        </div>
-                    </figure>
-                    <div class="container-icon-play-trailer">
-                        <img src="images/jugar.png" alt="">
-                    </div>
-                </div>
-            </section>
+            <div class="arrow-up">
+                <button id="arrow-up">Subir</button>
+            </div>   
         </main>
         <footer>
             <div>

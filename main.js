@@ -11,15 +11,20 @@ const instance_api = axios.create({
 
 const createE = (elemento) => document.createElement(elemento);
 
+
+const imgHeroPage = document.getElementById('imgHeroPage')
+
 const iconSearchMovie = document.getElementById('search-movie')
 iconSearchMovie.addEventListener('click', showSearchAndMenu)
 
 const searchInput = document.getElementById('search-input')
 const containerNav = document.getElementsByClassName('nav')
+
+const input = document.querySelector('#search')
+
 const menuBurger = document.getElementById('burger')
 menuBurger.addEventListener('click', onlyMenuBurgerAndNav)
 
-const searchIconInput = document.querySelector('.search-icon-input')
 const iconSeacrch = document.querySelector('.icon-search') 
 iconSeacrch.addEventListener('click', goSearchMovie)
 
@@ -29,9 +34,26 @@ seeAllTrends.addEventListener('click', goSeeAllMovie)
 const seeAllPopulars = document.querySelector('#see-all-populars')
 seeAllPopulars.addEventListener('click', goSeeAllMovie)
 
-function goSearchMovie(){
-    location.hash = '#search='
+const buttonUp = document.getElementById('arrow-up')
+buttonUp.addEventListener('click', goToUp)
+
+const ulList = document.querySelector('.ul-list_navegation')
+
+function goToUp(){
+    containerCategories.scrollTo( 0, 0 );
 }
+
+function goSearchMovie(){
+    console.log(decodeURI(input.value).trim())
+    location.hash = `#search=${input.value.trim()}`
+}
+
+document.addEventListener("keyup", function(event) {
+    if (event.key === 'Enter') {
+        goSearchMovie();
+    }
+});
+
 
 function goSeeAllMovie(){
     location.hash = '#gender='
@@ -44,8 +66,10 @@ function showSearchAndMenu (){
         iterator.classList.add('inactive')
     }
     menuBurger.style.display='block'
-    searchIconInput.style.cssText = 'width: 50%; min-width: 240px;'
-    searchInput.style.width='100%'
+    searchInputNav.style.cssText = 'width: 80%; min-width: 240px;'
+    searchInput.style.width='90%'
+    
+    ulList.style.cssText = 'justify-content: center'
 }
 
 function onlyMenuBurgerAndNav(){
@@ -55,132 +79,124 @@ function onlyMenuBurgerAndNav(){
         iterator.classList.remove('inactive')
     }
     menuBurger.style.display='none'
-    searchIconInput.style.cssText = 'min-width: none;'
+    searchInputNav.style.cssText = 'min-width: none;'
     searchInput.style.width='0'
+    ulList.style.cssText = 'justify-content: space-evenly'
+}
+
+function renderMoviesHomePage(data, nodo){
+    if(nodo){
+        nodo.innerHTML =''
+    }
+    data.forEach(movie => {
+        const article = createE('article')
+        article.classList.add('article')
+        const figureContainer = createE('figure')
+        figureContainer.classList.add('tendencia-container')
+        
+        const imagMovie = createE('img')
+        imagMovie.classList.add('category-movie')
+        imagMovie.setAttribute('alt', movie.title)
+        imagMovie.setAttribute('src', `https://image.tmdb.org/t/p/w300${movie.poster_path}`)
+        
+        figureContainer.append(imagMovie)
+
+        const containerInfo = createE('div')
+        
+        containerInfo.classList.add('datos-movie')
+
+        const containerPuntuacion = createE('div')
+        
+        const puntuacion = movie.vote_average
+        const imagPositive = createE('img')
+        imagPositive.setAttribute('src', "images/estrella.png")
+        imagPositive.classList.add('start')
+
+        const imagNegative = createE('img')
+        imagNegative.setAttribute('src', "images/estrellaFalse.png")
+        imagNegative.classList.add('start')
+
+        if(puntuacion < 5){
+            containerPuntuacion.append(imagPositive, imagPositive, imagNegative, imagNegative, imagNegative)
+            containerInfo.append(containerPuntuacion)
+            article.append(figureContainer,containerInfo,containerPuntuacion)
+            nodo.append(article)
+        }else if(puntuacion < 7){
+            containerPuntuacion.append(imagPositive,imagPositive,imagPositive,imagNegative,imagNegative)
+            containerInfo.append(containerPuntuacion)
+            article.append(figureContainer,containerInfo,containerPuntuacion)
+            nodo.append(article)
+        }else if(puntuacion <=8){
+            containerPuntuacion.append(imagPositive,imagPositive,imagPositive,imagPositive,imagNegative)
+            containerInfo.append(containerPuntuacion)
+            article.append(figureContainer,containerInfo,containerPuntuacion)
+            nodo.append(article)
+        }else if(puntuacion > 8){
+            containerPuntuacion.append(imagPositive,imagPositive,imagPositive,imagPositive,imagPositive)
+            containerInfo.append(containerPuntuacion)
+            article.append(figureContainer,containerInfo,containerPuntuacion)
+            nodo.append(article)
+        }
+    });
+}
+
+function renderCategoriesMovies(data, nodo){
+    if(nodo){
+        nodo.innerHTML =''
+    }
+
+    data.forEach((movie)=>{
+        imgHeroPage.setAttribute('src', `https://image.tmdb.org/t/p/w300${data[0].poster_path}`)
+        const article = createE('article')
+        article.classList.add = ('art-movie')
+        const figureContainer = createE('figure')
+        figureContainer.classList.add('tendencia-container')
+
+        const imagMovie = createE('img')
+        imagMovie.classList.add('category-for-movie')
+        imagMovie.setAttribute('alt', movie.title)
+        imagMovie.setAttribute('src', `https://image.tmdb.org/t/p/w300${movie.poster_path}`)
+
+        figureContainer.append(imagMovie)
+        article.append(figureContainer)
+        nodo.append(article)
+    })
 }
 
 async function getMoviePreviewTrend(){
-    const {data} = await instance_api('/trending/movie/day')
-    const movies = data.results
     
-    movies.forEach(movie => {
-        const containerMovie = document.getElementById('movie-tendencias')
-        const article = createE('article')
-        article.classList.add('article')
-        const figureContainer = createE('figure')
-        figureContainer.classList.add('tendencia-container')
-        
-        const imagMovie = createE('img')
-        imagMovie.classList.add('category-movie')
-        imagMovie.setAttribute('alt', movie.title)
-        imagMovie.setAttribute('src', `https://image.tmdb.org/t/p/w300${movie.poster_path}`)
-        
-        figureContainer.append(imagMovie)
-
-        const containerInfo = createE('div')
-        
-        containerInfo.classList.add('datos-movie')
-
-        const containerPuntuacion = createE('div')
-        
-        const puntuacion = movie.vote_average
-        const imagPositive = createE('img')
-        imagPositive.setAttribute('src', "images/estrella.png")
-        imagPositive.classList.add('start')
-
-        const imagNegative = createE('img')
-        imagNegative.setAttribute('src', "images/estrellaFalse.png")
-        imagNegative.classList.add('start')
-
-        if(puntuacion < 5){
-            containerPuntuacion.append(imagPositive, imagPositive, imagNegative, imagNegative, imagNegative)
-            containerInfo.append(containerPuntuacion)
-            article.append(figureContainer,containerInfo,containerPuntuacion)
-            containerMovie.append(article)
-        }else if(puntuacion < 7){
-            containerPuntuacion.append(imagPositive,imagPositive,imagPositive,imagNegative,imagNegative)
-            containerInfo.append(containerPuntuacion)
-            article.append(figureContainer,containerInfo,containerPuntuacion)
-            containerMovie.append(article)
-        }else if(puntuacion <=8){
-            containerPuntuacion.append(imagPositive,imagPositive,imagPositive,imagPositive,imagNegative)
-            containerInfo.append(containerPuntuacion)
-            article.append(figureContainer,containerInfo,containerPuntuacion)
-            containerMovie.append(article)
-        }else if(puntuacion > 8){
-            containerPuntuacion.append(imagPositive,imagPositive,imagPositive,imagPositive,imagPositive)
-            containerInfo.append(containerPuntuacion)
-            article.append(figureContainer,containerInfo,containerPuntuacion)
-            containerMovie.append(article)
+    const {data} = await instance_api('/trending/movie/day', {
+        params:{
+            page: 1
         }
-    });
-
+    })
+    const movies = data.results
+    const containerMovie = document.getElementById('movie-tendencias')
+    renderMoviesHomePage(movies, containerMovie)
 }
 
 async function getMoviePreviewPopular(){
-    const {data} = await instance_api('/trending/movie/day')
-    const movies = data.results
-    
-    movies.forEach(movie => {
-        const containerMovie = document.getElementById('movie-popular')
-        const article = createE('article')
-        article.classList.add('article')
-        const figureContainer = createE('figure')
-        figureContainer.classList.add('tendencia-container')
-        
-        const imagMovie = createE('img')
-        imagMovie.classList.add('category-movie')
-        imagMovie.setAttribute('alt', movie.title)
-        imagMovie.setAttribute('src', `https://image.tmdb.org/t/p/w300${movie.poster_path}`)
-        
-        figureContainer.append(imagMovie)
-        article.appendChild(figureContainer)
-        containerMovie.appendChild(article)
-        const containerInfo = createE('div')
-        
-        containerInfo.classList.add('datos-movie')
-
-        const containerPuntuacion = createE('div')
-        
-        const puntuacion = movie.vote_average
-        const imagPositive = createE('img')
-        imagPositive.setAttribute('src', "images/estrella.png")
-        imagPositive.classList.add('start')
-
-        const imagNegative = createE('img')
-        imagNegative.setAttribute('src', "images/estrellaFalse.png")
-        imagNegative.classList.add('start')
-
-        if(puntuacion < 5){
-            containerPuntuacion.append(imagPositive, imagPositive, imagNegative, imagNegative, imagNegative)
-            containerInfo.append(containerPuntuacion)
-            article.append(figureContainer,containerInfo,containerPuntuacion)
-            containerMovie.append(article)
-        }else if(puntuacion < 7){
-            containerPuntuacion.append(imagPositive,imagPositive,imagPositive,imagNegative,imagNegative)
-            containerInfo.append(containerPuntuacion)
-            article.append(figureContainer,containerInfo,containerPuntuacion)
-            containerMovie.append(article)
-        }else if(puntuacion <=8){
-            containerPuntuacion.append(imagPositive,imagPositive,imagPositive,imagPositive,imagNegative)
-            containerInfo.append(containerPuntuacion)
-            article.append(figureContainer,containerInfo,containerPuntuacion)
-            containerMovie.append(article)
-        }else if(puntuacion > 8){
-            containerPuntuacion.append(imagPositive,imagPositive,imagPositive,imagPositive,imagPositive)
-            containerInfo.append(containerPuntuacion)
-            article.append(figureContainer,containerInfo,containerPuntuacion)
-            containerMovie.append(article)
+    const {data} = await instance_api('/trending/movie/day',
+    {
+        params:{
+            page: 2
         }
-    });
+    })
+    const movies = data.results
+    imgHeroPage.setAttribute('src', `https://image.tmdb.org/t/p/w300${movies[1].poster_path}`)
+    const containerMovie = document.getElementById('movie-popular')
+    renderMoviesHomePage(movies, containerMovie)
 }
 
-async function getGenderMovies (){
+async function getCategoryMovies (){
     const {data} = await instance_api('/genre/movie/list')
-    const genderes = data.genres
     
+    const genderes = data.genres
+    const containerGenderMovie = document.querySelector('.container-gender-movies')
+    if(containerGenderMovie){
+        containerGenderMovie.innerText = ''
+    }
     genderes.forEach((gender)=>{
-        const containerGenderMovie = document.querySelector('.container-gender-movies')
         const containerTitleGender = createE('article')
         containerTitleGender.classList.add('gender-movies-list')
 
@@ -192,31 +208,36 @@ async function getGenderMovies (){
         title.setAttribute('id', gender.id)
         title.innerText = gender.name
         
+        title.addEventListener('click', ()=>{
+            location.hash = `#gender=${gender.id}-${gender.name}`
+        })
+        
         divContainer.appendChild(title)
         containerTitleGender.appendChild(divContainer)
         containerGenderMovie.appendChild(containerTitleGender)
-    })
+    })   
+    
 }
 
-async function getMovieForCategory(){
-    const {data} = await instance_api('/trending/movie/day')
+async function getMovieByCategory(id){
+    const {data} = await instance_api('/discover/movie', {
+        params: {
+            with_genres : id,
+        }
+    })
     const movies = data.results
-    
-    movies.forEach(movie => {
-        const containerMovie = document.getElementById('movieForCategory')
-        const article = createE('article')
-        article.classList.add = ('art-movie')
-        const figureContainer = createE('figure')
-        figureContainer.classList.add('tendencia-container')
-        
-        const imagMovie = createE('img')
-        imagMovie.classList.add('category-for-movie')
-        imagMovie.setAttribute('alt', movie.title)
-        imagMovie.setAttribute('src', `https://image.tmdb.org/t/p/w300${movie.poster_path}`)
-        
-        figureContainer.append(imagMovie)
-        article.append(figureContainer)
-        containerMovie.append(article)
-        
-    });
+    const containerMovie = document.getElementById('movieForCategory')
+    renderCategoriesMovies(movies, containerMovie)
+}
+
+async function getMovieBySearch(query){
+    const {status, data} = await instance_api('/search/movie', {
+        params: {
+            query,
+        }
+    })
+    const containerMovie = document.getElementById('movieForCategory')
+    const movies = data.results
+    renderCategoriesMovies(movies, containerMovie)
+    console.log({status});
 }
