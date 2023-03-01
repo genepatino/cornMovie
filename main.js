@@ -88,8 +88,12 @@ function renderMoviesHomePage(data, nodo){
     if(nodo){
         nodo.innerHTML =''
     }
+    
     data.forEach(movie => {
         const article = createE('article')
+        article.addEventListener('click', ()=>{
+            location.hash = `#movie=${movie.id}`
+        })
         article.classList.add('article')
         const figureContainer = createE('figure')
         figureContainer.classList.add('tendencia-container')
@@ -146,9 +150,13 @@ function renderCategoriesMovies(data, nodo){
     }
 
     data.forEach((movie)=>{
+        
         imgHeroPage.setAttribute('src', `https://image.tmdb.org/t/p/w300${data[0].poster_path}`)
         const article = createE('article')
         article.classList.add = ('art-movie')
+        article.addEventListener('click', ()=>{
+            location.hash = `#movie=${movie.id}`
+        })
         const figureContainer = createE('figure')
         figureContainer.classList.add('tendencia-container')
 
@@ -183,7 +191,7 @@ async function getMoviePreviewPopular(){
         }
     })
     const movies = data.results
-    imgHeroPage.setAttribute('src', `https://image.tmdb.org/t/p/w300${movies[1].poster_path}`)
+    imgHeroPage.setAttribute('src', `https://image.tmdb.org/t/p/w300${movies[0].poster_path}`)
     const containerMovie = document.getElementById('movie-popular')
     renderMoviesHomePage(movies, containerMovie)
 }
@@ -197,8 +205,11 @@ async function getCategoryMovies (){
         containerGenderMovie.innerText = ''
     }
     genderes.forEach((gender)=>{
-        const containerTitleGender = createE('article')
-        containerTitleGender.classList.add('gender-movies-list')
+        const article = createE('article')
+        article.classList.add('gender-movies-list')
+        article.addEventListener('click', ()=>{
+            location.hash = `#movie=${movie.id}`
+        })
 
         const divContainer = createE('div')
         divContainer.classList.add('gender-movies')
@@ -213,8 +224,8 @@ async function getCategoryMovies (){
         })
         
         divContainer.appendChild(title)
-        containerTitleGender.appendChild(divContainer)
-        containerGenderMovie.appendChild(containerTitleGender)
+        article.appendChild(divContainer)
+        containerGenderMovie.appendChild(article)
     })   
     
 }
@@ -239,5 +250,69 @@ async function getMovieBySearch(query){
     const containerMovie = document.getElementById('movieForCategory')
     const movies = data.results
     renderCategoriesMovies(movies, containerMovie)
-    console.log({status});
 }
+
+async function getMovieById(id){
+    const {status, data: movie} = await instance_api(`/movie/${id}`)
+    console.log({movie});
+    imgHeroPage.setAttribute('src', `https://image.tmdb.org/t/p/w300${movie.poster_path}`)
+
+
+    const description = document.querySelector('.description')
+    const dPuntuacion = document.querySelector('.d-puntuacion')
+    const categories = document.querySelector('.categories')
+    
+    movie.genres.forEach((gen)=>{
+        
+        const containerCategories = createE('div')
+        containerCategories.classList.add('div-categories')
+
+        const circulo = createE('div')
+        circulo.classList.add('circulo')
+    
+        const category = createE('p')
+        category.innerText = gen.name
+        containerCategories.append(circulo, category)
+        categories.append(containerCategories)
+    })
+
+
+    const title = createE('h3')
+    title.innerText = movie.title
+
+    const containerPuntuacion = createE('div')
+    containerPuntuacion.classList.add('puntuacion')
+
+    const puntaje = createE('p')
+    puntaje.innerText = movie.vote_average.toFixed(1)
+
+    const star = createE('img')
+    star.setAttribute('src', "images/estrella.png")
+
+    containerPuntuacion.append(puntaje, star)
+
+    const details = createE('p')
+    details.innerText = movie.overview
+
+    dPuntuacion.append(title, containerPuntuacion)
+    description.append(dPuntuacion, details, categories)
+
+    mainContainer.style.cssText = `background-image: url(https://image.tmdb.org/t/p/w300${movie.poster_path}); background-repeat: no-repeat;background-size: contain !important, background-position: top;max-height: 80vh`
+
+    containerCategories.style.cssText = 'margin-top: 300px; background: var(--background-blue); border-top-left-radius: 20px; border-top-right-radius: 20px;'
+}
+
+
+/* aspect-ratio: 500/281; // Para evitar el CLS 
+height: auto; // Junto con el width, y el aspect ratio, el navegador calcula el alto que necesitará la imagen
+max-height: 80vh; // Un alto máximo
+object-fit: cover; // Redimenciona la imagen al tamaño del contenedor (Sin deformarla) y cubriendo todo el espacio disponible
+object-position: top; // Alinea la imagen, de forma que se muestra la parte de arriba siempre
+width: 100%; // Para que abarque todo el ancho */
+
+
+/* background-image: url(https://image.tmdb.org/t/p/w300/p98DxMJbXjI6ITI9aFh3U0u5oF7.jpg);
+background-repeat: no-repeat;
+background-position: top;
+background-size: contain;
+ */

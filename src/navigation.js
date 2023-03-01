@@ -25,15 +25,23 @@ const containerTrends = qselect('.tendencia')
 const containerPopulars = qselect('.populares')
 const genderMovies = qselect('.gender-categories-movies')
 const imagHeroContainer = qselect('.imag-hero-container')
-const containerCategories = qselect('.container-categories')
-const recommendedTrailer = qselect('.recommended-trailer')
+const description = qselect('.description')
 const cardTrailerMovie = qselect('.cardTrailerMovieCategory')
 const searchInputNav = qselect('.input-nav')
 const movieForCategory = qselect('.movieForCategory')
 const titleByCategory = document.getElementById('title-by-category')
+const mainContainer = qselect('.main-container')
+const containerCategories = qselect('.container-categories')
+const mainNav = qselect('.main-nav')
 
 function homePage(){
     console.log('HOME')
+
+    mainContainer.classList.remove('main-container-movie')
+    mainContainer.classList.add('main-container')
+
+    description.classList.remove('description')
+    description.style.display = 'none'
 
     searchInputNav.classList.add('search-icon-input')
     searchInputNav.classList.remove('input-nav')
@@ -61,6 +69,10 @@ function homePage(){
 
 function searchPage(){
     console.log('SEARCH')
+
+    description.classList.remove('description')
+    description.style.display = 'none'
+
     searchInputNav.classList.add('search-icon-input')
     searchInputNav.classList.remove('input-nav')
 
@@ -88,7 +100,10 @@ function searchPage(){
 
 function genderPage(){
     console.log('GENDER')
-    
+
+    description.classList.remove('description')
+    description.style.display = 'none'
+
     searchInputNav.classList.add('search-icon-input')
     searchInputNav.classList.remove('input-nav')
 
@@ -123,6 +138,28 @@ function genderPage(){
 function moviePage(){
     console.log('MOVIE')
 
+    mainNav.classList.add('inactive')
+
+    imagHeroContainer.classList.remove('imag-hero-container')
+    imagHeroContainer.classList.add('inactive')
+
+    containerTrends.classList.remove('tendencia')
+    containerTrends.classList.add('inactive')
+
+    containerPopulars.classList.remove('populares')
+    containerPopulars.classList.add('inactive')
+
+    genderMovies.classList.add('gender-categories-movies')
+    genderMovies.classList.remove('inactive')
+    genderMovies.style.cssText = 'z-index:2'
+
+    movieForCategory.classList.add('inactive')
+    movieForCategory.classList.remove('movieForCategory')
+
+    const [_, id] = location.hash.split("=")
+
+    getMovieById(id)
+    getCategoryMovies()
 }
 
 function trendsPage(){

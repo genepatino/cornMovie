@@ -21,13 +21,12 @@
 
 html{
     font-size: 62.5%;
-    background-color: var(--light-blue) !important;
 }
 
 body{
     font-size: 1.6rem;
     font-family: sans-serif;
-    background-color: var(--light-blue)
+    background-color: var(--background-blue)
 }
 
 body::-webkit-scrollbar {
@@ -73,6 +72,44 @@ a:hover{
     min-width: 320px;
     background-color: var(--background-blue);
     margin: 0px auto;
+    gap: 40px;
+}
+
+.main-container-movie{
+    position: relative;
+    display: grid;
+    grid-template-areas: 
+    "menu"
+    "containerCategories"
+    "footer";
+    width: 100%;
+    height: 100vh;
+    max-width: 1400px;
+    min-width: 320px;
+    background-color: var(--background-blue);
+    margin: 0px auto;
+    gap: 40px;
+}
+
+.z-index{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    display: flex;
+    height: 410px;
+    background-image: linear-gradient(to bottom, #1783ff14, #0068c336, #004d886b, #0d325140, #111820);
+}
+
+.image-movie{
+    position: fixed;
+    width: 100%;
+    height: 400px;
+}
+
+.image-movie img{
+    width: 100%;
+    height: 100%;
 }
 
 .main-nav{
@@ -173,7 +210,7 @@ input{
 
 .image-hero{
     position: relative;
-    min-width: 260px;
+    min-width: 240px;
     display: grid;
     place-self: center;
 }
@@ -203,13 +240,68 @@ input{
     grid-template-columns: 1fr;
     grid-template-areas:
     "imagHero"
+    "description"
     "tendencias"
     "populares"
     "movieForCategory"
     "genderCategories"
     "arrowUp";
     overflow-y: auto;
-    margin: 60px 0 40px
+}
+
+
+.description{
+    width: 80%;
+    display: grid;
+    grid-area: description;
+    place-self: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    gap: 20px;
+    color: var(--white-title);
+    margin: 40px 0;
+}
+
+.d-puntuacion{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.puntuacion{
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+
+.puntuacion img{
+    width: 14px;
+}
+
+.categories{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.div-categories{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.categories p{
+    font-size: 1.4rem;
+}
+
+.circulo{
+    width: 22px;
+    height: 22px;
+    background: var(--pink);
+    border-radius: 30%;
 }
 
 .arrow-up{
@@ -416,8 +508,9 @@ footer{
     grid-area: footer;
     width: 100%;
     place-items: center;
-    position: absolute;
+    position: fixed;
     bottom: 0;
+    z-index: 2;
     background: var(--background-foot);
     padding: 14px 0;
     --webkit-box-shadow: 7px 4px 10px 5px rgba(0,0,0,0.52);
